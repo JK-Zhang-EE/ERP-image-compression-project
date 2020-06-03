@@ -12,7 +12,7 @@ X_YCBCR_float = double(X_YCBCR);
 % Defined
 filter_size = 8;
 center_area = 15;
-YCbCr_sample = 8;
+YCbCr_sample = 4;
 
 % JPEG QT
 Q_table=[16 11 10 16 24 40 51 61
@@ -70,8 +70,8 @@ New_image = copy_image;
 for i=2:3
     for j=1:image_length/YCbCr_sample
         for k =1:image_width/YCbCr_sample
-            part_ycbcr = fix(mean(mean(copy_image(j*8-7:j*8,k*8-7:k*8,i))));
-            New_image(j*8-7:j*8,k*8-7:k*8,i) = part_ycbcr;
+            part_ycbcr = fix(mean(mean(copy_image(j*YCbCr_sample-(YCbCr_sample-1):j*YCbCr_sample,k*YCbCr_sample-(YCbCr_sample-1):k*YCbCr_sample,i))));
+            New_image(j*YCbCr_sample-(YCbCr_sample-1):j*YCbCr_sample,k*YCbCr_sample-(YCbCr_sample-1):k*YCbCr_sample,i) = part_ycbcr;
         end
     end
 end
